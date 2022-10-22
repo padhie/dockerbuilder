@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controller;
+
+class FormParams
+{
+    public string $name = '';
+
+    public string $image = '';
+}

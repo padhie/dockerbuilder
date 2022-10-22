@@ -1,0 +1,26 @@
+<div class="card mb-3">
+    <div class="card-body">
+
+        <div class="mb-3">
+            <label for="build_{{ index }}_name" class="form-label">Name</label>
+            <input class="form-control" type="text" name="build_{{ index }}_name" id="build_{{ index }}_name" aria-label=".form-control-sm example" value="{{ params.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="build_{{ index }}_image" class="form-label">Image</label>
+            <select name="build_{{ index }}_image" id="build_{{ index }}_image" class="form-select" aria-label="Default select example" required>
+                <option>Select an Image</option>
+
+                <optgroup label="PHP">
+                    <option value="php_8.1_cli" {% if params.image == 'php_8.1_cli' %}selected{% endif %}>PHP 8.1 cli (thecodingmachine)</option>
+                    <option value="php_8.1_apache" {% if params.image == 'php_8.1_apache' %}selected{% endif %}>PHP 8.1 apache (thecodingmachine)</option>
+                </optgroup>
+
+                <optgroup label="MySql">
+                    <option value="mysql_8.0" {% if params.image == 'mysql_8.0' %}selected{% endif %}>MySql 8.0</option>
+                </optgroup>
+            </select>
+        </div>
+
+    </div>
+</div>

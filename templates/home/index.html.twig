@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% set content %}
+    {% include 'home/image.html.twig' with {'index': '{ID}', 'params': emptyParams} %}
+{% endset %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-5 mr-3">
+            <form method="post">
+                {% for index in params|keys %}
+                    {% include 'home/image.html.twig' with {'index': index, 'params': params[index]} %}
+                {% endfor %}
+
+                <div id="addContainerCard" class="mb-3 p-2 card text-center">
+                    <span class="fa-solid fa-plus" title="add container"></span>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">generate</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col">
+            <!-- spacer -->
+        </div>
+
+        <div class="col-md-5 ml-3 p-4 debug">
+            <pre>{{ yamlContent ?? ''}}</pre>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #addContainerCard {
+            cursor: pointer;
+        }
+        .debug {
+            background-color: lightgrey;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let currentIndex = 0;
+        const emptyCardTemplate = `{{ content }}`;
+        const addContainerCard = document.getElementById('addContainerCard');
+
+        addContainerCard.addEventListener('click', () => {
+            currentIndex++;
+
+            let cardTemplate = emptyCardTemplate.replaceAll('{ID}', currentIndex.toString());
+            let cardElementWrapper = document.createElement('div');
+            cardElementWrapper.innerHTML = cardTemplate;
+
+            addContainerCard.parentNode.insertBefore(cardElementWrapper.lastElementChild, addContainerCard)
+        });
+    </script>
+{% endblock %}

@@ -13,6 +13,7 @@ services:
             - .:/var/www/html
         working_dir: "/var/www/html"
         environment:
+            APACHE_DOCUMENT_ROOT: public/
             PHP_EXTENSION_XDEBUG: 1
             XDEBUG_CONFIG: remote_host=host.docker.internal
             STARTUP_COMMAND_1: composer install
