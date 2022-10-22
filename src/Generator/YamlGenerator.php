@@ -32,6 +32,8 @@ final class YamlGenerator
     {
         return match ($image) {
             'php_8.1_cli' => new ContainerGenerator\Php81CliGenerator(),
+            'php_8.1_apache' => new ContainerGenerator\Php81ApacheGenerator(),
+            'mysql_8.0' => new ContainerGenerator\Mysql80Generator(),
             default => new ContainerGenerator\NoopGenerator(),
         };
     }
@@ -45,7 +47,7 @@ final class YamlGenerator
 
         foreach ($containers as $name => $container) {
             assert($container instanceof ContainerParameter);
-            $services[$name] = $container->toArray();
+            $services[$name] = array_filter($container->toArray());
         }
 
         return Yaml::dump([

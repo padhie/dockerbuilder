@@ -10,6 +10,8 @@ class ContainerParameter
 
     public string $containerName = '';
 
+    public ?string $command = null;
+
     /** @var list<Port> */
     public array $ports = [];
 
@@ -32,6 +34,7 @@ class ContainerParameter
         return [
             'image' => $this->image,
             'container_name' => $this->containerName,
+            'command' => $this->command,
             'ports' => array_map(static fn (Port $port) => $port->toArray(), $this->ports),
             'volumes' => array_map(static fn (Volumes $volume) => $volume->toArray(), $this->volumes),
             'working_dir' => $this->workingDir,
