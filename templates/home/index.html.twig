@@ -46,7 +46,7 @@
 
 {% block javascripts %}
     <script>
-        let currentIndex = 0;
+        let currentIndex = {{ lastIndex }};
         const emptyCardTemplate = `{{ content }}`;
         const addContainerCard = document.getElementById('addContainerCard');
 

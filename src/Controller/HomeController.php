@@ -30,6 +30,7 @@ final class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'emptyParams' => $emptyParams,
             'params' => $params,
+            'lastIndex' => count($params) - 1,
             'yamlContent' => $dockerComposeContent,
         ]);
     }
