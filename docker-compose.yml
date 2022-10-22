@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+    app:
+        image: thecodingmachine/php:8.1-v4-apache
+        container_name: dockerbuilder_app
+        labels:
+            - "traefik.http.routers.dockerbuilder.rule=Host(`dockerbuilder.localhost`)"
+        ports:
+            - "9000:9000"
+            - "9003:9003"
+        volumes:
+            - .:/var/www/html
+        working_dir: "/var/www/html"
+        environment:
+            PHP_EXTENSION_XDEBUG: 1
+            XDEBUG_CONFIG: remote_host=host.docker.internal
+            STARTUP_COMMAND_1: composer install
+        networks:
+            traefik:
+                ipv4_address: 172.16.31.1
+
+networks:
+    traefik:
+        external: true
