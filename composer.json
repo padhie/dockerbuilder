@@ -20,7 +20,7 @@
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.1.*",
-        "symfony/monolog-bridge": "6.1.*",
+        "symfony/monolog-bridge": "6.4.*",
         "symfony/runtime": "6.1.*",
         "symfony/twig-bundle": "6.1.*",
         "symfony/yaml": "6.1.*",
